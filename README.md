@@ -1,70 +1,87 @@
-# Getting Started with Create React App
+# Clothing Picker App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A web application to manage and randomly select clothing items, track wear counts, and filter by type and occasion. Built with React and Firebase (Firestore & Storage).
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+Add clothing items with image, type, and occasion
 
-### `npm start`
+Mark items as worn and track wear count
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Filter items by type and occasion
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Pick a random item or the least/most worn items
 
-### `npm test`
+Responsive clothing grid display
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+##T echnologies
 
-### `npm run build`
+Frontend: React, JavaScript, HTML, CSS
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Backend / Database: Firebase Firestore, Firebase Storage
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Hosting: Firebase Hosting
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Installation / Setup
 
-### `npm run eject`
+Clone the repository
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+git clone https://github.com/rohit875511/clothing-picker.git
+cd clothing-picker
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Install dependencies
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+npm install
 
-## Learn More
+## Configure Firebase
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Create a Firebase project at https://console.firebase.google.com
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Enable Firestore Database and Storage
 
-### Code Splitting
+Copy your Firebase config into src/firebase.js:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+import { initializeApp } from "firebase/app";
+import { getFirestore } from "firebase/firestore";
+import { getStorage } from "firebase/storage";
 
-### Analyzing the Bundle Size
+const firebaseConfig = {
+  apiKey: "YOUR_API_KEY",
+  authDomain: "YOUR_AUTH_DOMAIN",
+  projectId: "YOUR_PROJECT_ID",
+  storageBucket: "YOUR_STORAGE_BUCKET",
+  messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+  appId: "YOUR_APP_ID"
+};
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+const app = initializeApp(firebaseConfig);
+export const db = getFirestore(app);
+export const storage = getStorage(app);
 
-### Making a Progressive Web App
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## Run locally
 
-### Advanced Configuration
+npm start
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+Opens the app in your default browser at http://localhost:3000
 
-### Deployment
+## Usage
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+Add Item: Select an image, choose a type and occasion, click “Add Item”
 
-### `npm run build` fails to minify
+Mark as Worn: Click “Mark as Worn” under any item
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Pick Random: Select a random item from your collection
+
+Pick Least/Most Worn: Display a sorted list of items by wear count
+
+Filter: Use the type and occasion filters to narrow the displayed items
+
+## Deployment
+
+Make sure your Firebase project is configured and initialized:
+
+firebase init hosting
+npm run build
+firebase deploy
